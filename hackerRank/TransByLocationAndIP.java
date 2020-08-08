@@ -3,7 +3,6 @@ package hackerRank;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -12,7 +11,8 @@ import java.net.URL;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
-import org.json.simple.JSONArray; 
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;

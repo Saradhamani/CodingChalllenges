@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -28,7 +29,11 @@ class Result_stock {
 		List<Integer>result= new LinkedList<Integer>();
 		for(int i=0; i < queries.size();i++) {
 			if(queries.get(i)>stockData.size())
+				result.add(i, -1);//index out of bounds
+			if(Collections.min(stockData)==stockData.get(i)) {
 				result.add(i, -1);
+				break;
+			}
 			else {
 				int mid=queries.get(i)-1;//reducing 1 to get the index ryt
 				System.out.println("day selected"+queries.get(i)+"mid:"+mid);

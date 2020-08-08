@@ -8,13 +8,14 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-class Result_stock2 {
+
+class Result_stock3 {
 
 	/*
 	 * Complete the 'predictAnswer' function below.
@@ -26,57 +27,18 @@ class Result_stock2 {
 	 */
 
 	public static List<Integer> predictAnswer(List<Integer> stockData, List<Integer> queries) {
-		long startTime=System.nanoTime();
-		List<Integer>result= new LinkedList<Integer>();
-		int bef=0,aft=0,day=0,short_bef=-1,short_aft=-1;
-		 
-		for(int i=0;i<queries.size();i++) {
-			day=queries.get(i)-1;//query indicates the selected day, decrementing it by 1 will give the index
-			bef=day-1;
-			aft=day+1;
-			short_bef=-1;
-			short_aft=-1;
-			boolean flag=false;
-			if(queries.get(i)-1>stockData.size())
-				result.add(i, -1);//index out of bounds
-			else if(Collections.min(stockData)==stockData.get(day)) {
-				result.add(i, -1);//if the selected day has the minimal price already
-				break;
-			}
-			while(!flag && (bef>=0||aft<stockData.size())) {
-				if(bef>=0&&stockData.get(bef)<stockData.get(day))
-				{
-					short_bef=bef+1;//bef indicates the index and incrementing it by 1 will give the req day
-					if(short_bef>0) {
-						result.add(i, short_bef);
-						flag=true;//flag =true indicates sol is found
-					}
-				}
-				if(!flag&&aft<stockData.size()&&stockData.get(aft)<stockData.get(day)) {
-					short_aft=aft+1;//aft indicates the index and incrementing it by 1 will give the req day
-					if(short_aft>0) {
-						result.add(i, short_aft);flag=true;
-						}
-				}
-				
-				
-				
-				bef=bef-1;//move the counter to left by 1
-				aft=aft+1;//move the counter to right by 1
-			}//while
-			if(!flag) {
-				result.add(i, -1);
-			}
-			
-		}
-		long endTime=System.nanoTime();
-		System.out.println("Execution time in nano seconds "+ (endTime-startTime));
-		System.out.println("Execution time in milli seconds "+ (endTime-startTime)/1000000);
-		System.out.println(result);
-		return result;}
-
-}
-public class StockMarketPrediction2 {
+		List<Integer>results=new LinkedList<Integer>();
+		AtomicInteger index=new AtomicInteger();
+		Map<Integer,Integer> stocks=IntStream.range(0, stockData.size()).boxed().collect(Collectors.toMap(k->index.get(),v->stockData.get(index.getAndIncrement())));
+		
+		
+		
+		return results;
+		
+	}
+	
+	}
+public class StockMarketPrediction3 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		//BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
@@ -107,7 +69,7 @@ public class StockMarketPrediction2 {
 				.map(Integer::parseInt)
 				.collect(toList());
 
-		List<Integer> result = Result_stock2.predictAnswer(stockData, queries);
+		List<Integer> result = Result_stock3.predictAnswer(stockData, queries);
 
 		bufferedWriter.write(
 				result.stream()

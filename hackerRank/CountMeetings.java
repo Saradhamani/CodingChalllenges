@@ -39,16 +39,6 @@ class Result_meetings {
         int first_day;
         int last_day;
     };
-    class firstDayCompare implements Comparator<investors>{
-
-        @Override
-        public int compare(investors o1, investors o2) {
-            // TODO Auto-generated method stub
-            return o1.first_day-o2.first_day;
-            
-        }
-        
-    }
     class lastDayCompare implements Comparator<investors>{
 
         @Override
